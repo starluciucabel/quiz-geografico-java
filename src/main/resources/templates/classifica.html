@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">Geoclipse</div>
+        <ul class="nav-links">
+          <li>
+            <a href="/home" th:href="@{/home}">Torna indietro alla Home</a>
+          </li>
+          <li></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+          <div class="feature-card ranking" onclick="location.href='/classifica'">
+                <span class="feature-icon">🏆</span>
+                <h2>Classifica</h2>
+                <p>Confronta i tuoi punteggi con altri utenti e scala la classifica globale dei geografi.</p>
+                <a href="/classifica" class="feature-button">Vedi Classifica</a>
+            </div>
+    </main>
+    <h1>classifica</h1>
+  </body>
+</html>
