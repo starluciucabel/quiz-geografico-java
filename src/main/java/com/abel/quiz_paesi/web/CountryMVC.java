@@ -55,21 +55,21 @@ public class CountryMVC {
 
     @GetMapping("allenamento")
     public String allenamento(Model m) {
-         m.addAttribute("title", "Allenati subito ");
+        m.addAttribute("title", "Allenati subito ");
         return "allenamento";
 
     }
 
     @PostMapping("/quizPageAnswer")
-     public String postMethodName(@RequestParam String quizPageAnswer, Model m) {
-        if (quizPageAnswer.equals(winner.getCapital()) ) {
+    public String postMethodName(@RequestParam String quizPageAnswer, Model m) {
+        if (quizPageAnswer.equals(winner.getCapital())) {
             m.addAttribute("risultato", "Hai vinto");
-        }else{
+        } else {
             m.addAttribute("risultato", "Hai sbagliato, la capitale è:" + winner.getCapital().toString());
         }
         m.addAttribute("paese", winner.getName());
         m.addAttribute("risposta", quizPageAnswer);
-        return "training_bandiere";
+        return "training_capitali";
     }
 
     public Country getRandomCountry() {
@@ -111,9 +111,27 @@ public class CountryMVC {
         return "training_bandiere";
     }
 
-    @GetMapping("quiz_capitali")
-    public String capitali(Model m) {
-        m.addAttribute("title", "mettiti alla prova con le capitali");
+    @GetMapping("/quiz_capitali")
+    public String quizCapitali(Model m) {
+        List<Country> countries = this.getRandomCountries(4);
+        winner = countries.get(0);
+        Collections.shuffle(countries);
+
+        m.addAttribute("title", "Quiz");
+        m.addAttribute("paese", winner.getName());
+        m.addAttribute("paesi", countries);
+        return "quiz_capitali";
+    }
+
+    @PostMapping("/quizCapitaliAnswer")
+    public String quizAnswer(@RequestParam String quizPageAnswer, Model m) {
+        if (quizPageAnswer.equals(winner.getCapital())) {
+            m.addAttribute("risultato", "Hai vinto");
+        } else {
+            m.addAttribute("risultato", "Hai sbagliato, la capitale è: " + winner.getCapital());
+        }
+        m.addAttribute("paese", winner.getName());
+        m.addAttribute("risposta", quizPageAnswer);
         return "quiz_capitali";
     }
 
