@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-QuizPaesiApplication<quiz-paesi>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.abel.quiz_paesi.QuizPaesiApplication",
+            "projectName": "quiz-paesi",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
