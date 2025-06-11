@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "countries")
 public class Country {
 
-    
     @Id
     @Column(name = "alpha2Code")
     private String alphaCode;
@@ -31,8 +30,8 @@ public class Country {
     @Transient
     private String flag;
 
-    public String getFlag(){
-        return "flags/" + alphaCode.toLowerCase() + ".png";
+    public String getFlag() {
+        return alphaCode.toLowerCase() + ".png";
     }
 
 }

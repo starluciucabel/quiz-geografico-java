@@ -101,12 +101,32 @@ public class CountryMVC {
     @GetMapping("training_bandiere")
     public String trainingBandiere(Model m) {
         List<Country> countries = this.getRandomCountries(4);
-        m.addAttribute("title", "allenati");
         winner = countries.get(0);
         Collections.shuffle(countries);
 
+        // Aggiunta degli attributi al model
+        m.addAttribute("bandiera", winner.getFlag());
         m.addAttribute("paese", winner.getName());
-        m.addAttribute("paesi", countries);
+        m.addAttribute("winner", winner); // facoltativo
+        m.addAttribute("paesi", countries); // ❗necessario per i bottoni
+        m.addAttribute("risultato", null); // per far comparire il form nel template
+
+        return "training_bandiere";
+    }
+
+    @PostMapping("/quizBandiereAnswer")
+    public String quizBandiereAnswer(@RequestParam String quizBandiereAnswer,
+            @RequestParam String corretta,
+            Model m) {
+        if (quizBandiereAnswer.equals(corretta)) {
+            m.addAttribute("risultato", "Hai indovinato la bandiera!");
+        } else {
+            m.addAttribute("risultato", "Risposta errata! Era: " + corretta);
+        }
+
+        m.addAttribute("paese", corretta);
+        m.addAttribute("risposta", quizBandiereAnswer);
+        m.addAttribute("bandiera", corretta.toLowerCase() + ".png"); // o come gestisci i file immagine
 
         return "training_bandiere";
     }
